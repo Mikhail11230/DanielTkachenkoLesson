@@ -30,12 +30,15 @@ public class SimpleSpaceObject implements SpaceObject {
 
 	@Override
 	public void collide(SpaceObject obj) {
-		// you may need to fill this in...
+	     
 	}
 
 	@Override
 	public void move(int x, int y) {
+		 
 		shape.move(x,y);
+		
+		
 	}
 
 	@Override

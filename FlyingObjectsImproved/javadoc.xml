@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project default="javadoc">
+    <target name="javadoc">
+        <javadoc access="public" author="true" classpath="." destdir="doc" nodeprecated="false" nodeprecatedlist="false" noindex="false" nonavbar="false" notree="false" source="1.7" sourcefiles="src/Game.java,src/ControlledObject.java,src/FallingSpinningObject.java,src/Polygon.java,src/SimpleGame.java,src/SpaceObjectDecorator.java,src/Point.java,src/SimpleSpaceObject.java,src/SpaceObject.java" sourcepath="src" splitindex="true" use="true" version="true">
+            <link href="file:/C:/Users/Mikhail/git/Mikhail11230-project1/FlyingObjectsImproved/doc/"/>
+        </javadoc>
+    </target>
+</project>

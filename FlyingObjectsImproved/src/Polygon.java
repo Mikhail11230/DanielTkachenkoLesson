@@ -104,6 +104,10 @@ class Polygon {
 	public Polygon(Point[] inShape) {
 		this(inShape, new Point(0, 0), 0.0);
 	}
+	
+	public Point getOffset() {
+		return this.offset;
+	}
 
 	/**
 	 * Rotates the polygon.

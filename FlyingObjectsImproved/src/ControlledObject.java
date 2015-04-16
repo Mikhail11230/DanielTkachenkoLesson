@@ -1,6 +1,7 @@
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.ArrayList;
 
  /** @author Mikhail
  *Controlled Object class is going to be a ship 
@@ -39,23 +40,53 @@ public class ControlledObject implements SpaceObject, KeyListener{
 	    
 		
 	}
-
+    /**
+     * Collisions - work on one object
+     */
 	@Override
 	public void collide(SpaceObject obj) {
-	
+			Point offset = ((SimpleSpaceObject) obj).shape.getOffset();
+			boolean collide = ((SimpleSpaceObject) spaceObject).shape.contains(offset);
+
+			if (collide == true) {
+				System.err.println("Collide !!!");
+				
+			}
+			
+		}
+	/**
+     * Collisions - work on one object, however, do not work for arraylist of objects
+     * can't figure out what the error is for now. 
+     */
+	/*
+	public boolean isColliding(ArrayList<SpaceObject> blockList, SpaceObject object) {
+		
+		for(SpaceObject spaceObject : blockList){
+			Point offset = ((SimpleSpaceObject) object).shape.getOffset();
+			boolean collide = ((SimpleSpaceObject) spaceObject).shape.contains(offset);
+			
+			if (collide == true) {
+				System.err.println("Collide !!!");
+				return true;
+			}
+			return false;
+		}
+		
+	return false;
 	}
+   */
 
 	@Override
 	public void keyPressed(KeyEvent e) {
         
 		 if (e.getKeyCode() == KeyEvent.VK_LEFT)
-		      spaceObject.move(-8, 0);
+		      spaceObject.move(-15, 0);
 		    if (e.getKeyCode() == KeyEvent.VK_RIGHT)
-		    	spaceObject.move(8, 0);
+		    	spaceObject.move(15, 0);
 		    if (e.getKeyCode() == KeyEvent.VK_UP)
-	            spaceObject.move(0, -8);
+	            spaceObject.move(0, -15);
 		    if (e.getKeyCode() == KeyEvent.VK_DOWN)
-		        spaceObject.move(0, 8);
+		        spaceObject.move(0, 15);
  
 	}
 
@@ -70,6 +101,7 @@ public class ControlledObject implements SpaceObject, KeyListener{
 		// TODO Auto-generated method stub
 		
 	}
+
 
 
 }

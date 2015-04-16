@@ -29,8 +29,8 @@ public class SimpleSpaceObject implements SpaceObject {
 	}
 
 	@Override
-	public void collide(SpaceObject obj) {
-	     
+	public void collide(SpaceObject obj) {    
+		
 	}
 
 	@Override

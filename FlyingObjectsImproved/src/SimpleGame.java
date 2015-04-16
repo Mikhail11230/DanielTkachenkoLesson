@@ -2,6 +2,9 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.ArrayList;
+
+import javax.swing.JFrame;
 
 /**
  * A very simple example of how to use the Game base class.
@@ -20,7 +23,7 @@ public class SimpleGame extends Game implements KeyListener{
 	 * Adding Another object that will simulate FallingSpinningAsteroid
 	 * And Ship that is being controlled by Keyboard input
 	 */
-	
+    ArrayList<SpaceObject> blockList;
 	FallingSpinningObject block;
 	ControlledObject ship;
 	/**
@@ -32,7 +35,12 @@ public class SimpleGame extends Game implements KeyListener{
 	 * @param inHeight
 	 */
 	public SimpleGame(String name, int inWidth, int inHeight) {
+       
 		super(name, inWidth, inHeight);
+		blockList = new ArrayList<SpaceObject>();
+		boolean collision = true;
+        int generator = 200;
+        boolean gameGoing = true;
 		setBackground(Color.BLACK);
 		setFocusable(true);
 		Point[] shipShape = { new Point(210, 100), new Point(190, 90),
@@ -48,10 +56,15 @@ public class SimpleGame extends Game implements KeyListener{
 		
 		//block = new FallingSpinningObject(new SimpleSpaceObject(blockShape, new Point(200,200), -90));
 	    ship = new ControlledObject(new SimpleSpaceObject(flyingShape, new Point (200,200), -90));
-	    
-	    block = new FallingSpinningObject(new SimpleSpaceObject(blockShape, new Point (200,200), -90));
-	    
 	    this.addKeyListener(ship);
+	    
+	    // 10 asteroid randomly generated on the map
+	    for (int i = 0; i < 10; i++) {
+            block = new FallingSpinningObject(new SimpleSpaceObject(blockShape, new Point(Math.random() * 400, Math.random() * 400), -90));
+            blockList.add(block);
+        }
+	
+	    
 	    
 	    
 	}
@@ -65,8 +78,13 @@ public class SimpleGame extends Game implements KeyListener{
 		super.paintComponent(g);
 		g.setColor(Color.WHITE);
 		ship.paint(g);
-		block.paint(g);
+		ship.collide(block.fallSpinObject);
+		for (SpaceObject spaceObject : blockList){
+			spaceObject.paint(g);
+
+		}
 		
+	
 	}
 
 	/**
@@ -81,6 +99,7 @@ public class SimpleGame extends Game implements KeyListener{
 		SimpleGame game = new SimpleGame("Simple Game", 400, 900);
 		game.requestFocus();
 		game.startGame();
+			
 	}
 
 	@Override

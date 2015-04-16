@@ -15,6 +15,7 @@ public class FallingSpinningObject implements SpaceObject{
 	SpaceObject fallSpinObject;
 	
 	public FallingSpinningObject(SpaceObject fallSpinObject){
+
 		this.fallSpinObject=fallSpinObject;
 		
 	}

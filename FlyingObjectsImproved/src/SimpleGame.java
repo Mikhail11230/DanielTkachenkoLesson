@@ -59,15 +59,11 @@ public class SimpleGame extends Game implements KeyListener{
 	    this.addKeyListener(ship);
 	    
 	    // 10 asteroid randomly generated on the map
-	    for (int i = 0; i < 10; i++) {
-            block = new FallingSpinningObject(new SimpleSpaceObject(blockShape, new Point(Math.random() * 400, Math.random() * 400), -90));
-            blockList.add(block);
-        }
+        block = new FallingSpinningObject(new SimpleSpaceObject(blockShape, new Point(Math.random() * 400, Math.random() * 400), -90));
+        
+        
+	    }
 	
-	    
-	    
-	    
-	}
 
 	/**
 	 * Draw the ship in white.
@@ -79,13 +75,11 @@ public class SimpleGame extends Game implements KeyListener{
 		g.setColor(Color.WHITE);
 		ship.paint(g);
 		ship.collide(block.fallSpinObject);
-		for (SpaceObject spaceObject : blockList){
-			spaceObject.paint(g);
-
+		ship.getHealth(block.fallSpinObject);
+		ship.isDead(block.fallSpinObject);
+		block.paint(g);
 		}
-		
-	
-	}
+
 
 	/**
 	 * In main, we create a new SimpleGame, make sure it has the keyboard focus

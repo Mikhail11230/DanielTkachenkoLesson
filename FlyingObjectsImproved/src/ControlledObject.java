@@ -3,6 +3,8 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.ArrayList;
 
+import javax.swing.JFrame;
+
  /** @author Mikhail
  *Controlled Object class is going to be a ship 
  *User will be able to control ship
@@ -13,6 +15,7 @@ import java.util.ArrayList;
 public class ControlledObject implements SpaceObject, KeyListener{
 	KeyListener keyboard;
 	SpaceObject spaceObject;
+	int health = 15;
 	public ControlledObject(SpaceObject spaceObject){
 	this.spaceObject = spaceObject;
     
@@ -58,10 +61,10 @@ public class ControlledObject implements SpaceObject, KeyListener{
      * Collisions - work on one object, however, do not work for arraylist of objects
      * can't figure out what the error is for now. 
      */
-	/*
-	public boolean isColliding(ArrayList<SpaceObject> blockList, SpaceObject object) {
-		
-		for(SpaceObject spaceObject : blockList){
+	
+  
+   public boolean isColliding(SpaceObject object) {
+		    
 			Point offset = ((SimpleSpaceObject) object).shape.getOffset();
 			boolean collide = ((SimpleSpaceObject) spaceObject).shape.contains(offset);
 			
@@ -70,11 +73,7 @@ public class ControlledObject implements SpaceObject, KeyListener{
 				return true;
 			}
 			return false;
-		}
-		
-	return false;
-	}
-   */
+    }
 
 	@Override
 	public void keyPressed(KeyEvent e) {
@@ -101,7 +100,36 @@ public class ControlledObject implements SpaceObject, KeyListener{
 		// TODO Auto-generated method stub
 		
 	}
-
+	/**
+	 * 
+	 * Implemented potential health of the controlled object
+	 * once the object collide with asteroid its hp is getting 
+	 * decreased 
+	 * 
+	 */
+	public int getHealth(SpaceObject object){
+		if (this.isColliding(object)){
+			health--;
+			System.out.println(health);
+		}
+		return health;
+	}
+	
+	/**
+	 * 
+	 * Implement potential loose situation if hp goes lower than 0 
+	 * Means player is dead for now it is a rude close of game 
+	 * However in the future menu can be implemented saying that player
+	 * died and showing score he recieved. 
+	 *
+	 */
+    public boolean isDead(SpaceObject object){
+    	if (health < 0){
+    		System.out.println("you are dead");
+    	    System.exit(0);
+    	}
+    	return false;
+    }
 
 
 }

@@ -3,6 +3,7 @@ import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.ArrayList;
+import java.util.Random;
 
 import javax.swing.JFrame;
 
@@ -23,7 +24,7 @@ public class SimpleGame extends Game implements KeyListener{
 	 * Adding Another object that will simulate FallingSpinningAsteroid
 	 * And Ship that is being controlled by Keyboard input
 	 */
-    ArrayList<SpaceObject> blockList;
+	ArrayList<FallingSpinningObject> blockList;
 	FallingSpinningObject block;
 	ControlledObject ship;
 	/**
@@ -37,10 +38,7 @@ public class SimpleGame extends Game implements KeyListener{
 	public SimpleGame(String name, int inWidth, int inHeight) {
        
 		super(name, inWidth, inHeight);
-		blockList = new ArrayList<SpaceObject>();
-		boolean collision = true;
-        int generator = 200;
-        boolean gameGoing = true;
+		blockList = new ArrayList();
 		setBackground(Color.BLACK);
 		setFocusable(true);
 		Point[] shipShape = { new Point(210, 100), new Point(190, 90),
@@ -57,12 +55,15 @@ public class SimpleGame extends Game implements KeyListener{
 		//block = new FallingSpinningObject(new SimpleSpaceObject(blockShape, new Point(200,200), -90));
 	    ship = new ControlledObject(new SimpleSpaceObject(flyingShape, new Point (200,200), -90));
 	    this.addKeyListener(ship);
-	    
-	    // 10 asteroid randomly generated on the map
-        block = new FallingSpinningObject(new SimpleSpaceObject(blockShape, new Point(Math.random() * 400, Math.random() * 400), -90));
-        
-        
-	    }
+	    //block = new FallingSpinningObject(new SimpleSpaceObject(blockShape, new Point(Math.random() * 400, Math.random() * 400), -90));
+	    // generating 5 asteroids at random location;
+	    Random rad = new Random();
+		for (int i = 0; i < 5; i++) {
+			FallingSpinningObject block = new FallingSpinningObject(
+					new SimpleSpaceObject(blockShape, new Point(rad.nextInt(350 - 50) + 50, 200), -90));
+			blockList.add(block);
+		}
+	}
 	
 
 	/**
@@ -74,11 +75,25 @@ public class SimpleGame extends Game implements KeyListener{
 		super.paintComponent(g);
 		g.setColor(Color.WHITE);
 		ship.paint(g);
-		ship.collide(block.fallSpinObject);
-		ship.getHealth(block.fallSpinObject);
-		ship.isDead(block.fallSpinObject);
-		block.paint(g);
+		
+		//Creating list of blocks 
+		for (FallingSpinningObject block : blockList) {
+			block.paint(g);
 		}
+		//creating collisions with every block
+		for (FallingSpinningObject block : blockList) {
+			ship.collide(block.fallSpinObject);
+		}
+		//updating health from collisions of every block
+		for (FallingSpinningObject block : blockList) {
+			ship.getHealth(block.fallSpinObject);
+		}
+		//checking if ship is dead after collision with every block
+		for (FallingSpinningObject block : blockList){
+			ship.isDead(block.fallSpinObject);
+		}
+		
+	}
 
 
 	/**

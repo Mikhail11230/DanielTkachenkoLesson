@@ -6,6 +6,7 @@ public class Application {
     public static void main(String[] args) {
 
 // She said "Hello!" to me. New line. "I was glad to see her"
+        int a = 5;
         System.out.println(" \tShe said \"Hello!\" to me. \n.  \t\"I was glad to see her\"" );
 
     }

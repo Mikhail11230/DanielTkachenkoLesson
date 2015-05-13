@@ -64,9 +64,12 @@ public class ControlledObject implements SpaceObject, KeyListener{
 	
   
    public boolean isColliding(SpaceObject object) {
-		    
-			Point offset = ((SimpleSpaceObject) object).shape.getOffset();
-			boolean collide = ((SimpleSpaceObject) spaceObject).shape.contains(offset);
+		    boolean collide;
+			Point[] offset = ((SimpleSpaceObject) object).shape.getPoints();
+			for (Point i : offset.length){
+				collide = ((SimpleSpaceObject) spaceObject).shape.contains(offset[i]);	
+			}
+			
 			
 			if (collide == true) {
 				System.err.println("Collide !!!");

@@ -1,7 +1,11 @@
 package gameServer.models;
 
 /**
- * Created by dan on 13.5.15.
+ * 
+ * @author Mikhail
+ * Enum representing the type of message send to 
+ * clients
+ *
  */
 public enum MessageType {
     GAME_START,

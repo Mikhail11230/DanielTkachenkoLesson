@@ -31,6 +31,8 @@ public class SimpleGame extends Game implements KeyListener{
 	ArrayList<FallingSpinningObject> blockList;
 	FallingSpinningObject block;
 	ControlledObject ship;
+	ControlledObject shipOpponent;
+	
 	/**
 	 * This constructor invokes the super constructor, then creates a ship
 	 * object (which doesn't do very much)
@@ -59,6 +61,8 @@ public class SimpleGame extends Game implements KeyListener{
 		//block = new FallingSpinningObject(new SimpleSpaceObject(blockShape, new Point(200,200), -90));
 	    ship = new ControlledObject(new SimpleSpaceObject(flyingShape, new client.other.Point(200,200), -90));
 	    this.addKeyListener(ship);
+	    shipOpponent = new ControlledObject(new SimpleSpaceObject(flyingShape, new client.other.Point(200,200), -90));
+	    this.addKeyListener(ship);
 	    //block = new FallingSpinningObject(new SimpleSpaceObject(blockShape, new Point(Math.random() * 400, Math.random() * 400), -90));
 	    // generating 5 asteroids at random location;
 	    Random rad = new Random();
@@ -79,7 +83,7 @@ public class SimpleGame extends Game implements KeyListener{
 		super.paintComponent(g);
 		g.setColor(Color.WHITE);
 		ship.paint(g);
-		
+		shipOpponent.paint(g);
 		//Creating list of blocks 
 		for (FallingSpinningObject block : blockList) {
 			block.paint(g);
@@ -87,14 +91,17 @@ public class SimpleGame extends Game implements KeyListener{
 		//creating collisions with every block
 		for (FallingSpinningObject block : blockList) {
 			ship.collide(block.fallSpinObject);
+			//shipOpponent.collide(block.fallSpinObject);
 		}
 		//updating health from collisions of every block
 		for (FallingSpinningObject block : blockList) {
 			ship.getHealth(block.fallSpinObject);
+			//shipOpponent.getHealth(block.fallSpinObject);
 		}
 		//checking if ship is dead after collision with every block
 		for (FallingSpinningObject block : blockList){
 			ship.isDead(block.fallSpinObject);
+			//shipOpponent.isDead(block.fallSpinObject);
 		}
 		
 	}
@@ -126,6 +133,21 @@ public class SimpleGame extends Game implements KeyListener{
 		
 	}
 
+	
+	public ControlledObject getMyPShip(){
+		return ship;
+	}
+	
+	public ControlledObject getShipOpponent(){
+		return shipOpponent;
+				
+	}
+
+
+	public void setShipOpponent(ControlledObject shipOpponent) {
+		this.shipOpponent = shipOpponent;
+	}
+	
 
 	
 

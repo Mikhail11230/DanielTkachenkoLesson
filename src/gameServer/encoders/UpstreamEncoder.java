@@ -6,7 +6,10 @@ import javax.websocket.EndpointConfig;
 import java.util.Base64;
 
 /**
- * Created by dan on 13.5.15.
+ * 
+ * @author Mikhail
+ * Encoder to encode messages that is being send
+ *
  */
 public class UpstreamEncoder implements Encoder.Text<String> {
     @Override

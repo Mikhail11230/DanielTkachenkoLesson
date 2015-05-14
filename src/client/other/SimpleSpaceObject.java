@@ -15,6 +15,7 @@ public class SimpleSpaceObject implements SpaceObject {
 	 */
 	public client.other.Polygon shape;
 	
+	
 	/**
 	 * The only constructor, hooks up with Polygon constructor
 	 * @param blockShape an array of Points specifying the shape of the Polygon (see Polygon docs)
@@ -23,6 +24,7 @@ public class SimpleSpaceObject implements SpaceObject {
 	 */
 	public SimpleSpaceObject(Point[] blockShape, Point point, double inRotation) {
 		shape = new client.other.Polygon(blockShape, point, inRotation);
+		
 	}
 
 
@@ -48,6 +50,12 @@ public class SimpleSpaceObject implements SpaceObject {
 	@Override
 	public void rotate(double r) {
 		shape.rotate(r);
+	}
+	public Polygon getShape(){
+		return this.shape;
+	}
+	public void setPolygon(Polygon shape){
+		shape = this.shape;
 	}
 
 }

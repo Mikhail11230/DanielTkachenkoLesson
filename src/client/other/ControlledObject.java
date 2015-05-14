@@ -14,9 +14,11 @@ import java.awt.event.KeyListener;
 **/
 public class ControlledObject implements SpaceObject, KeyListener{
    KeyListener keyboard;
-   SpaceObject spaceObject;
-   int health = 15;
-   public ControlledObject(SpaceObject spaceObject){
+   SimpleSpaceObject spaceObject;
+   int score = 0;
+   
+   
+   public ControlledObject(SimpleSpaceObject spaceObject){
    this.spaceObject = spaceObject;
 
    }
@@ -77,7 +79,9 @@ public class ControlledObject implements SpaceObject, KeyListener{
 
    @Override
    public void keyPressed(KeyEvent e) {
-
+	   		Point pointMode = ((SimpleSpaceObject)  spaceObject).shape.offset;
+	   		System.out.println("X:"+pointMode.x);
+	   		System.out.println("Y:"+pointMode.y);
         if (e.getKeyCode() == KeyEvent.VK_LEFT)
              spaceObject.move(-15, 0);
            if (e.getKeyCode() == KeyEvent.VK_RIGHT)
@@ -109,10 +113,10 @@ public class ControlledObject implements SpaceObject, KeyListener{
     */
    public int getHealth(SpaceObject object){
        if (this.isColliding(object)){
-           health--;
-           System.out.println(health);
+           score++;
+           System.out.println(score);
        }
-       return health;
+       return score;
    }
 
    /**
@@ -124,12 +128,19 @@ public class ControlledObject implements SpaceObject, KeyListener{
     *
     */
    public boolean isDead(SpaceObject object){
-       if (health < 0){
-           System.out.println("you are dead");
+       if (score > 50){
+           System.out.println("you have won");
            System.exit(0);
        }
        return false;
    }
+  /* public SpaceObject getShape(){
+	   return spaceObject.
+   }*/
+   public SimpleSpaceObject getMyShip(){
+	   return this.spaceObject;
+   }
+   
 
 
 }

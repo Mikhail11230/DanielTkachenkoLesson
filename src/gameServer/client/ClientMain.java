@@ -12,7 +12,10 @@ import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 
 /**
- * Created by dan on 13.5.15.
+ * 
+ * @author Mikhail
+ *Here we define simple main build and uri for server
+ *creating new instances of client per connection
  */
 public class ClientMain {
     private static CountDownLatch messageLatch;

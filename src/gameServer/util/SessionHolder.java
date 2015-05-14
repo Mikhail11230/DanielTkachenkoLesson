@@ -4,7 +4,11 @@ import javax.websocket.Session;
 import java.util.HashSet;
 
 /**
- * Created by dan on 13.5.15.
+ * 
+ * @author Mikhail
+ * Defining session with connected clients
+ * 
+ *
  */
 public class SessionHolder {
     private HashSet<Session> connectedUsers;

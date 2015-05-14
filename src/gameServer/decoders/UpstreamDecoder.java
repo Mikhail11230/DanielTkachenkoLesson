@@ -5,7 +5,10 @@ import javax.websocket.Decoder;
 import javax.websocket.EndpointConfig;
 
 /**
- * Created by dan on 13.5.15.
+ * 
+ * @author Mikhail
+ * Decoder to decode data that is being send
+ *
  */
 
 public class UpstreamDecoder implements Decoder.Text<String> {

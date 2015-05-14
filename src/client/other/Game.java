@@ -55,6 +55,7 @@ public class Game extends JPanel implements Runnable {
 		gameThread.start();
 	}
 	
+	
 	/**
 	 * Specifies the basic action of the game animation
 	 */
